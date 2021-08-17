@@ -3,6 +3,7 @@
 window.addEventListener("load",function() {
     const url = "https://handlers.education.launchcode.org/static/astronauts.json"
     const container = document.getElementById("container");
+    const count = document.getElementById("count")
 
     fetch(url)
     .then(function(response) {
@@ -17,8 +18,23 @@ window.addEventListener("load",function() {
         });
 
         for (i = 0; i <= jsonObject.length; i++) { 
-        
-            container.innerHTML += `
+
+            if (`${jsonObject[i].active}` === "true") {
+                container.innerHTML += `
+            <div class="astronaut">
+                <div class"bio">
+                    <h3>${jsonObject[i].firstName} ${jsonObject[i].lastName}</h3>
+                    <ul>
+                        <li>Hours in space: ${jsonObject[i].hoursInSpace}</li>
+                        <li style="color:green">Active: ${jsonObject[i].active}</li>
+                        <li>Skills: ${jsonObject[i].skills.join(", ")}</li>
+                    </ul>
+                </div>
+                <img class="avatar" src="${jsonObject[i].picture}">
+            </div>
+            `
+            } else {
+                container.innerHTML += `
             <div class="astronaut">
                 <div class"bio">
                     <h3>${jsonObject[i].firstName} ${jsonObject[i].lastName}</h3>
@@ -31,9 +47,17 @@ window.addEventListener("load",function() {
                 <img class="avatar" src="${jsonObject[i].picture}">
             </div>
             `
+            }
 
-        };
+            count.innerHTML = `<p>
+           We have ${jsonObject.length} astronauts on this page. &#128524
+        </p>
+        `
+          
+
+        }
     
+        
 
     });
 
