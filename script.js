@@ -18,7 +18,13 @@ window.addEventListener("load",function() {
             <div class="astronaut">
                 <div class"bio">
                     <h3>${jsonObject[i].firstName} ${jsonObject[i].lastName}</h3>
+                    <ul>
+                        <li>Hours in space: ${jsonObject[i].hoursInSpace}</li>
+                        <li>Active: ${jsonObject[i].active}</li>
+                        <li>Skills: ${jsonObject[i].skills.join(", ")}</li>
+                    </ul>
                 </div>
+                <img class="avatar" src="${jsonObject[i].picture}">
             </div>
             `
 
