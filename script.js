@@ -11,9 +11,13 @@ window.addEventListener("load",function() {
         
     })
     .then(function(jsonObject) {
-        for (i = 0; i <= jsonObject.length; i++) {
-            console.log(jsonObject[i])
-            console.log(jsonObject[i].firstName)
+
+        jsonObject.sort(function(a, b) {
+            return b.hoursInSpace - a.hoursInSpace
+        });
+
+        for (i = 0; i <= jsonObject.length; i++) { 
+        
             container.innerHTML += `
             <div class="astronaut">
                 <div class"bio">
@@ -28,7 +32,7 @@ window.addEventListener("load",function() {
             </div>
             `
 
-        }
+        };
     
 
     });
